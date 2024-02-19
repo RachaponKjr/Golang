@@ -1,9 +1,16 @@
 package main
 
 import (
-	"fmt"
+	"github.com/RachaponKjr/Backend-Golang/controller"
+	"github.com/gofiber/fiber/v2"
 )
 
 func main() {
-	fmt.Println("server Started !")
+	app := fiber.New()
+	// create Product && update Product && delete Product
+	addProduct := app.Group("/api/product")
+	addProduct.Post("/create", controller.CreateProduct)
+	addProduct.Get("/getall", controller.GetProducts)
+
+	app.Listen(":8080")
 }
